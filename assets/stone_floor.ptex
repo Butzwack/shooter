@@ -1,0 +1,223 @@
+{
+	"connections": [
+		{
+			"from": "math_2",
+			"from_port": 0,
+			"to": "math",
+			"to_port": 1
+		},
+		{
+			"from": "perlin_2",
+			"from_port": 0,
+			"to": "scale",
+			"to_port": 0
+		},
+		{
+			"from": "scale",
+			"from_port": 0,
+			"to": "math_2",
+			"to_port": 0
+		},
+		{
+			"from": "math",
+			"from_port": 0,
+			"to": "normal_map2",
+			"to_port": 0
+		},
+		{
+			"from": "normal_map2",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 4
+		},
+		{
+			"from": "scale_2",
+			"from_port": 0,
+			"to": "math",
+			"to_port": 0
+		},
+		{
+			"from": "scale_2",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 0
+		},
+		{
+			"from": "bricks_uneven",
+			"from_port": 0,
+			"to": "scale_2",
+			"to_port": 0
+		}
+	],
+	"label": "Graph",
+	"longdesc": "",
+	"name": "@@322",
+	"node_position": {
+		"x": 0,
+		"y": 0
+	},
+	"nodes": [
+		{
+			"export_last_target": "Godot/Godot 4 Standard",
+			"export_paths": {
+				"Godot/Godot 4 Standard": "/home/markus/godot/shooter/assets/stone_floor"
+			},
+			"name": "Material",
+			"node_position": {
+				"x": 687.361145,
+				"y": -59.611115
+			},
+			"parameters": {
+				"albedo_color": {
+					"a": 1,
+					"b": 0.588235,
+					"g": 0.588235,
+					"r": 0.588235,
+					"type": "Color"
+				},
+				"ao": 1,
+				"depth_scale": 0.03,
+				"emission_energy": 1,
+				"flags_transparent": true,
+				"metallic": 0,
+				"normal": 1,
+				"roughness": 1,
+				"size": 11,
+				"sss": 0
+			},
+			"seed_int": 0,
+			"type": "material"
+		},
+		{
+			"name": "bricks_uneven",
+			"node_position": {
+				"x": -219.542236,
+				"y": -55.452957
+			},
+			"parameters": {
+				"bevel": 0.027,
+				"corner": 0.3,
+				"iterations": 8,
+				"min_size": 0.2,
+				"mortar": 0.014,
+				"randomness": 0.5,
+				"round": 0.04
+			},
+			"seed_int": 0,
+			"type": "bricks_uneven2_2"
+		},
+		{
+			"name": "perlin",
+			"node_position": {
+				"x": -240.584137,
+				"y": 206.610413
+			},
+			"parameters": {
+				"iterations": 3,
+				"persistence": 0.5,
+				"scale_x": 32,
+				"scale_y": 32
+			},
+			"seed_int": 0,
+			"type": "perlin"
+		},
+		{
+			"name": "math",
+			"node_position": {
+				"x": 265.026978,
+				"y": 127.272614
+			},
+			"parameters": {
+				"clamp": false,
+				"default_in1": 0,
+				"default_in2": 0,
+				"op": 2
+			},
+			"seed_int": 0,
+			"type": "math"
+		},
+		{
+			"name": "math_2",
+			"node_position": {
+				"x": 203.749207,
+				"y": 348.967072
+			},
+			"parameters": {
+				"clamp": false,
+				"default_in1": 0,
+				"default_in2": 0.05,
+				"op": 2
+			},
+			"seed_int": 0,
+			"type": "math"
+		},
+		{
+			"name": "perlin_2",
+			"node_position": {
+				"x": -287.889679,
+				"y": 363.411499
+			},
+			"parameters": {
+				"iterations": 3,
+				"persistence": 1,
+				"scale_x": 32,
+				"scale_y": 32
+			},
+			"seed_int": 0,
+			"type": "perlin"
+		},
+		{
+			"name": "normal_map2",
+			"node_position": {
+				"x": 496.110352,
+				"y": 120.411499
+			},
+			"parameters": {
+				"buffer": 1,
+				"param2": 0,
+				"size": 10,
+				"strength": 1
+			},
+			"seed_int": 0,
+			"type": "normal_map2"
+		},
+		{
+			"generic_size": 1,
+			"name": "scale",
+			"node_position": {
+				"x": -41.889679,
+				"y": 366.411499
+			},
+			"parameters": {
+				"cx": 0,
+				"cy": 0,
+				"scale_x": 0.02,
+				"scale_y": 0.02
+			},
+			"seed_int": 0,
+			"type": "scale"
+		},
+		{
+			"generic_size": 1,
+			"name": "scale_2",
+			"node_position": {
+				"x": 99.110352,
+				"y": -114.588501
+			},
+			"parameters": {
+				"cx": 0,
+				"cy": 0,
+				"scale_x": 0.5,
+				"scale_y": 0.5
+			},
+			"seed_int": 0,
+			"type": "scale"
+		}
+	],
+	"parameters": {
+
+	},
+	"seed_int": 0,
+	"shortdesc": "",
+	"type": "graph"
+}

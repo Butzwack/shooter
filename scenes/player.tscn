@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://25ap2cljy4c4"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_2ywn8"]
+[ext_resource type="Script" path="res://scripts/reticle.gd" id="2_3mvm4"]
+[ext_resource type="Script" path="res://scripts/debug_panel.gd" id="3_cxhre"]
+[ext_resource type="PackedScene" uid="uid://d1n0ct05heef5" path="res://scenes/weapon.tscn" id="3_h5la0"]
+[ext_resource type="Resource" uid="uid://bbes85fydxrrb" path="res://weapons/tovarok/tovarok.tres" id="3_m707m"]
+[ext_resource type="AudioStream" uid="uid://y2tfvotit2pd" path="res://assets/tovarok.wav" id="6_ty01y"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6fdlt"]
+radius = 0.3
+height = 1.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_babgk"]
+radius = 0.3
+height = 1.8
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_2ywn8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("CapsuleMesh_6fdlt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_babgk")
+
+[node name="VertPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="FPSCamera" type="Camera3D" parent="VertPivot"]
+unique_name_in_owner = true
+
+[node name="WeaponRig" type="Node3D" parent="VertPivot"]
+
+[node name="Weapon" parent="VertPivot/WeaponRig" instance=ExtResource("3_h5la0")]
+weapon_type = ExtResource("3_m707m")
+
+[node name="Hud" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Reticle" type="CenterContainer" parent="Hud"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_3mvm4")
+
+[node name="debug_panel" type="PanelContainer" parent="Hud"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 210.0
+offset_bottom = 50.0
+script = ExtResource("3_cxhre")
+
+[node name="MarginContainer" type="MarginContainer" parent="Hud/debug_panel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Hud/debug_panel/MarginContainer"]
+layout_mode = 2
+
+[node name="WeaponAttack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ty01y")

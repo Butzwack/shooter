@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Weapons" load_steps=3 format=3 uid="uid://bbes85fydxrrb"]
+
+[ext_resource type="Script" path="res://scripts/weapons.gd" id="1_4xuv6"]
+[ext_resource type="ArrayMesh" uid="uid://b6dxe0dtq4pto" path="res://weapons/tovarok/tovarok.res" id="1_j8x0b"]
+
+[resource]
+script = ExtResource("1_4xuv6")
+name = &"Tovarok"
+position = Vector3(0.22, -0.18, -0.45)
+rotation = Vector3(3, 4, 0)
+mesh = ExtResource("1_j8x0b")
+damage = 12.0

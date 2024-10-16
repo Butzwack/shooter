@@ -1,0 +1,133 @@
+[gd_scene load_steps=5 format=3 uid="uid://bphhvao6er4g"]
+
+[ext_resource type="PackedScene" uid="uid://25ap2cljy4c4" path="res://scenes/player.tscn" id="1_tfidt"]
+[ext_resource type="PackedScene" uid="uid://lbtp4hgplota" path="res://scenes/level.tscn" id="2_nvyfa"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="3_ifs67"]
+
+[sub_resource type="Theme" id="Theme_u3fs3"]
+default_font_size = 24
+
+[node name="Game" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_tfidt")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -2, 0, 1)
+
+[node name="Level" parent="." instance=ExtResource("2_nvyfa")]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+script = ExtResource("3_ifs67")
+
+[node name="PanelContainer" type="PanelContainer" parent="UI"]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 61.0
+offset_bottom = 134.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelContainer"]
+layout_mode = 2
+
+[node name="Resolution" type="OptionButton" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+selected = 2
+item_count = 5
+popup/item_0/text = "3840x2160"
+popup/item_1/text = "2560x1440"
+popup/item_1/id = 1
+popup/item_2/text = "1920x1080"
+popup/item_2/id = 2
+popup/item_3/text = "1280x800"
+popup/item_3/id = 3
+popup/item_4/text = "1280x720"
+popup/item_4/id = 4
+
+[node name="Vsync" type="OptionButton" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "Vsync disabled"
+popup/item_1/text = "Vsync enabled"
+popup/item_1/id = 1
+popup/item_2/text = "Adaptive Vsync"
+popup/item_2/id = 2
+popup/item_3/text = "Mailbox Vsync"
+popup/item_3/id = 3
+
+[node name="Upscaling Algorithm" type="OptionButton" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "Bilinear"
+popup/item_1/text = "FSR1"
+popup/item_1/id = 1
+popup/item_2/text = "FSR2"
+popup/item_2/id = 2
+
+[node name="Resolution Scale" type="HSlider" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+min_value = 0.25
+max_value = 2.0
+step = 0.01
+value = 1.0
+
+[node name="MSAA" type="OptionButton" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+selected = 1
+item_count = 4
+popup/item_0/text = "No MSAA"
+popup/item_1/text = "2x MSAA"
+popup/item_1/id = 1
+popup/item_2/text = "4x MSAA"
+popup/item_2/id = 2
+popup/item_3/text = "8x MSAA"
+popup/item_3/id = 3
+
+[node name="TAA" type="CheckButton" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "TAA"
+
+[node name="FXAA" type="CheckButton" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "FXAA"
+
+[node name="SSR" type="CheckButton" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "SSR"
+
+[node name="SSAO" type="CheckButton" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "SSAO"
+
+[node name="SSIL" type="CheckButton" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "SSIL"
+
+[node name="SDFGI" type="CheckButton" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "SDFGI"
+
+[node name="Exit" type="Button" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_u3fs3")
+text = "Exit"
+
+[connection signal="item_selected" from="UI/PanelContainer/VBoxContainer/Resolution" to="UI" method="_on_resolution_item_selected"]
+[connection signal="item_selected" from="UI/PanelContainer/VBoxContainer/Vsync" to="UI" method="_on_vsync_item_selected"]
+[connection signal="item_selected" from="UI/PanelContainer/VBoxContainer/Upscaling Algorithm" to="UI" method="_on_upscaling_algorithm_item_selected"]
+[connection signal="value_changed" from="UI/PanelContainer/VBoxContainer/Resolution Scale" to="UI" method="_on_resolution_scale_value_changed"]
+[connection signal="item_selected" from="UI/PanelContainer/VBoxContainer/MSAA" to="UI" method="_on_msaa_item_selected"]
+[connection signal="toggled" from="UI/PanelContainer/VBoxContainer/TAA" to="UI" method="_on_taa_toggled"]
+[connection signal="toggled" from="UI/PanelContainer/VBoxContainer/FXAA" to="UI" method="_on_fxaa_toggled"]
+[connection signal="toggled" from="UI/PanelContainer/VBoxContainer/SSR" to="UI" method="_on_ssr_toggled"]
+[connection signal="toggled" from="UI/PanelContainer/VBoxContainer/SSAO" to="UI" method="_on_ssao_toggled"]
+[connection signal="toggled" from="UI/PanelContainer/VBoxContainer/SSIL" to="UI" method="_on_ssil_toggled"]
+[connection signal="toggled" from="UI/PanelContainer/VBoxContainer/SDFGI" to="UI" method="_on_sdfgi_toggled"]
+[connection signal="pressed" from="UI/PanelContainer/VBoxContainer/Exit" to="UI" method="_on_exit_pressed"]
